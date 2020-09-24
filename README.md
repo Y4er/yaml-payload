@@ -58,3 +58,8 @@ Content-Type: application/x-www-form-urlencoded
 ## 访问注入的shell
 1. reGeorg: http://localhost:9092/api/v1/tunnel
 2. cmd shell: http://localhost:9092/api/v1/game POST:code=whoami
+
+# 参考
+1. https://github.com/LandGrey/SpringBootVulExploit
+2. https://www.anquanke.com/post/id/198886
+3. https://github.com/artsploit/yaml-payload
