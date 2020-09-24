@@ -31,11 +31,9 @@ public class Tunnel {
                     session.setAttribute("socket", socketChannel);
                     response.setHeader("X-STATUS", "OK");
                 } catch (UnknownHostException e) {
-                    System.out.println(e.getMessage());
                     response.setHeader("X-ERROR", e.getMessage());
                     response.setHeader("X-STATUS", "FAIL");
                 } catch (IOException e) {
-                    System.out.println(e.getMessage());
                     response.setHeader("X-ERROR", e.getMessage());
                     response.setHeader("X-STATUS", "FAIL");
 
@@ -45,7 +43,6 @@ public class Tunnel {
                 try{
                     socketChannel.socket().close();
                 } catch (Exception ex) {
-                    System.out.println(ex.getMessage());
                 }
                 session.invalidate();
             } else if (cmd.compareTo("READ") == 0){
@@ -65,16 +62,13 @@ public class Tunnel {
                     so.close();
 
                 } catch (Exception e) {
-                    System.out.println(e.getMessage());
                     response.setHeader("X-ERROR", e.getMessage());
                     response.setHeader("X-STATUS", "FAIL");
-                    //socketChannel.socket().close();
                 }
 
             } else if (cmd.compareTo("FORWARD") == 0){
                 SocketChannel socketChannel = (SocketChannel)session.getAttribute("socket");
                 try {
-
                     int readlen = request.getContentLength();
                     byte[] buff = new byte[readlen];
                     request.getInputStream().read(buff, 0, readlen);
@@ -86,9 +80,7 @@ public class Tunnel {
                         socketChannel.write(buf);
                     }
                     response.setHeader("X-STATUS", "OK");
-
                 } catch (Exception e) {
-                    System.out.println(e.getMessage());
                     response.setHeader("X-ERROR", e.getMessage());
                     response.setHeader("X-STATUS", "FAIL");
                     socketChannel.socket().close();
